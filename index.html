@@ -356,6 +356,7 @@ const T = {
   "courseLead": "Cinco sesiones de 2 horas que siguen el trabajo del profesor: diseñar, explicar, evaluar e impulsar la carrera. Desde la segunda sesión se trabajan tres apps sobre la asignatura de cada participante (unos 30 minutos por app) y se sale con un entregable real.",
   "thSes": "Sesión",
   "thOut": "Entregable",
+  "slides": "Ver la presentación",
   "sessions": [
    {
     "t": "Proveedores, modelos y tu clave de IA",
@@ -565,6 +566,7 @@ const T = {
   "courseLead": "Five 2-hour sessions following a lecturer's work: design, explain, assess and advance your career. From the second session on, three apps are applied to each participant's course (about 30 minutes per app) and everyone leaves with a real deliverable.",
   "thSes": "Session",
   "thOut": "Deliverable",
+  "slides": "View the slides (in Spanish)",
   "sessions": [
    {
     "t": "Providers, models and your AI key",
@@ -774,6 +776,7 @@ const T = {
   "courseLead": "Cinco sessões de 2 horas que seguem o trabalho do professor: desenhar, explicar, avaliar e impulsionar a carreira. A partir da segunda sessão, aplicam-se três apps à unidade curricular de cada participante (cerca de 30 minutos por app) e sai-se com um resultado real.",
   "thSes": "Sessão",
   "thOut": "Resultado",
+  "slides": "Ver a apresentação (em espanhol)",
   "sessions": [
    {
     "t": "Fornecedores, modelos e a tua chave de IA",
@@ -903,7 +906,7 @@ function render(){
     `<div class="srow head"><div></div><div>${esc(L.thSes)}</div><div class="hide-sm">${esc(L.thOut)}</div></div>` +
     L.sessions.map((s,i) => `<div class="srow" style="--c:var(${SES_COLOR[i+1]})">
       <div class="snum">${i+1}</div>
-      <div><div class="stit">${esc(s.t)}</div><div class="sapp">${esc(s.a)}</div></div>
+      <div><div class="stit">${esc(s.t)}</div><div class="sapp">${esc(s.a)}</div>${i === 0 ? `<a class="slink" href="https://fborrasumh.github.io/investigadoria/sesion1/" target="_blank" rel="noopener"><i class="ti ti-presentation"></i> ${esc(L.slides)}</a>` : ""}</div>
       <div class="hide-sm">${esc(s.o)}</div>
     </div>`).join("");
 
