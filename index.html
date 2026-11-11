@@ -141,29 +141,94 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
 
 <nav><div class="in">
   <a href="#fases" data-i18n="navPhases"></a>
+  <a href="#apps" data-i18n="navApps"></a>
+  <a href="#curso" data-i18n="navCourse"></a>
+  <a href="#clave" data-i18n="navKey"></a>
+  <a href="#normas" data-i18n="navRules"></a>
 </div></nav>
 
 <main>
   <section id="fases">
     <h2 data-i18n="phasesH"></h2>
     <p class="lead" data-i18n="phasesLead"></p>
+    <h3 class="vs-h" data-i18n="vsH"></h3>
+    <div class="cols vs">
+      <div class="box">
+        <h3><i class="ti ti-message-circle"></i> <span data-i18n="chatH"></span></h3>
+        <ul id="chatL"></ul>
+      </div>
+      <div class="box api">
+        <h3><i class="ti ti-key"></i> <span data-i18n="apiH"></span></h3>
+        <ul id="apiL"></ul>
+      </div>
+    </div>
+    <p class="phases-note vs-note" data-i18n="vsNote"></p>
     <div class="legend" id="legend"></div>
     <div class="phases-wrap"><div class="phases" id="phases"></div></div>
     <p class="phases-note" data-i18n="phasesNote"></p>
   </section>
+
+  <section id="apps">
+    <h2 data-i18n="appsH"></h2>
+    <p class="lead" data-i18n="appsLead"></p>
+    <div id="groups"></div>
+    <p class="shared" data-i18n="shared"></p>
+  </section>
+
+  <section id="curso">
+    <h2 data-i18n="courseH"></h2>
+    <p class="lead" data-i18n="courseLead"></p>
+    <div class="sessions" id="sessions"></div>
+  </section>
+
+  <section id="clave">
+    <h2 data-i18n="keyH"></h2>
+    <p class="lead" data-i18n="keyLead"></p>
+    <div class="cols">
+      <div class="box">
+        <h3><i class="ti ti-key"></i> <span data-i18n="keyStepsH"></span></h3>
+        <ol id="keySteps"></ol>
+        <div class="prov">
+          <a href="https://platform.openai.com/" target="_blank" rel="noopener">OpenAI</a>
+          <a href="https://aistudio.google.com/" target="_blank" rel="noopener">Google Gemini</a>
+          <a href="https://console.anthropic.com/" target="_blank" rel="noopener">Anthropic Claude</a>
+        </div>
+      </div>
+      <div class="box">
+        <h3><i class="ti ti-scale"></i> <span data-i18n="keyChooseH"></span></h3>
+        <ul id="keyChoose"></ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="normas">
+    <h2 data-i18n="rulesH"></h2>
+    <p class="lead" data-i18n="rulesLead"></p>
+    <div class="cols">
+      <div class="box">
+        <h3><i class="ti ti-shield-lock"></i> <span data-i18n="privH"></span></h3>
+        <ul id="priv"></ul>
+      </div>
+      <div class="box">
+        <h3><i class="ti ti-checklist"></i> <span data-i18n="ethH"></span></h3>
+        <ul id="eth"></ul>
+      </div>
+    </div>
+  </section>
 </main>
 
 <footer>
+  <p data-i18n="footOrg"></p>
   <p><span data-i18n="footDev"></span> Fernando Borrás Rocher · <a href="https://orcid.org/0000-0002-5519-4573" target="_blank" rel="noopener">ORCID 0000-0002-5519-4573</a> · <a href="https://github.com/fborrasumh/profesoria" target="_blank" rel="noopener">GitHub</a> · <span data-i18n="footLic"></span></p>
 </footer>
 
 <script>
 /* APPS DEL CURSO: cada ficha enlaza a https://fborrasumh.github.io/<id>/ */
-const APPS = [{"id": "sillabusAI", "name": "SyllabusAI", "ses": 2}, {"id": "aulia", "name": "AulIA", "ses": 2}, {"id": "nanoclase", "name": "NanoClase", "ses": 2}, {"id": "claria", "name": "ClarIA", "ses": 3}, {"id": "tutoria", "name": "TutorIA", "ses": 3}, {"id": "forja_ai", "name": "ForjaIA", "ses": 3}, {"id": "examforge", "name": "ExamForge", "ses": 4}, {"id": "corrigia", "name": "CorrigIA", "ses": 4}, {"id": "justitia", "name": "JustitIA", "ses": 4}, {"id": "publication_radar", "name": "Publication Radar", "ses": 5}, {"id": "meritoria", "name": "MeritorIA", "ses": 5}, {"id": "acreditia", "name": "AcreditIA", "ses": 5}];
+const APPS = [{"id": "sillabusAI", "name": "SyllabusAI", "ses": 2, "icon": "ti-building-monument"}, {"id": "aulia", "name": "AulIA", "ses": 2, "icon": "ti-school"}, {"id": "nanoclase", "name": "NanoClase", "ses": 2, "icon": "ti-presentation"}, {"id": "claria", "name": "ClarIA", "ses": 3, "icon": "ti-bulb"}, {"id": "tutoria", "name": "TutorIA", "ses": 3, "icon": "ti-message-question"}, {"id": "forja_ai", "name": "ForjaIA", "ses": 3, "icon": "ti-flame"}, {"id": "examforge", "name": "ExamForge", "ses": 4, "icon": "ti-pencil"}, {"id": "corrigia", "name": "CorrigIA", "ses": 4, "icon": "ti-writing"}, {"id": "justitia", "name": "JustitIA", "ses": 4, "icon": "ti-scale"}, {"id": "publication_radar", "name": "Publication Radar", "ses": 5, "icon": "ti-radar"}, {"id": "meritoria", "name": "MeritorIA", "ses": 5, "icon": "ti-certificate"}, {"id": "acreditia", "name": "AcreditIA", "ses": 5, "icon": "ti-shield-check"}];
 /* FRANJA DE FASES: apps del curso (APPS) + complementarias del catálogo fborrasumh.github.io/ia */
 const COMP = {"pericia": "Pericia", "generator": "Generator", "casopracticoAI": "CasoPrácticoAI", "tuitia": "TuitIA", "escenia": "EscenIA", "relatoria": "RelatorIA", "poliglotia": "PoliglotIA", "mentoria": "MentorIA", "Estudia": "EstudIA", "criteria": "CriterIA", "TFG_evaluator": "TFG Evaluator", "evaluador_oral": "Evaluador Oral", "anticonvocatoria": "AntiConvocatorIA", "desafia": "DesafIA", "cribia": "CribIA", "doctoralia": "Doctoralia", "grantwriter": "GrantWriter", "revistafit": "RevistaFit", "acta_ai": "ActaAI"};
 const PHASES = [["sillabusAI", "aulia", "pericia", "generator", "casopracticoAI"], ["nanoclase", "claria", "tuitia", "escenia", "relatoria", "poliglotia"], ["tutoria", "forja_ai", "mentoria", "Estudia"], ["examforge", "corrigia", "anticonvocatoria", "TFG_evaluator", "evaluador_oral"], ["justitia", "desafia", "cribia", "criteria"], ["publication_radar", "doctoralia", "grantwriter", "revistafit"], ["meritoria", "acreditia", "acta_ai"]];
-const SES_COLOR = { 2:"--s2", 3:"--s3", 4:"--s4", 5:"--s5" };
+const SES_COLOR = { 1:"--text", 2:"--s2", 3:"--s3", 4:"--s4", 5:"--s5" };
 const LANGS = ["es","en","pt"];
 const T = {
  "es": {
@@ -226,7 +291,154 @@ const T = {
    "meritoria": "Memoria de aportaciones para el sexenio",
    "acreditia": "Autoinforme del título y plan de mejora",
    "acta_ai": "Actas de reuniones a partir de notas o audio"
-  }
+  },
+  "navApps": "Apps",
+  "navCourse": "Curso",
+  "navKey": "Clave de IA",
+  "navRules": "Normas de uso",
+  "appsH": "Las doce apps",
+  "appsLead": "Cada app funciona en el navegador, sin instalación ni servidor, con OpenAI, Google Gemini o Anthropic Claude. La IA propone y el código comprueba.",
+  "checks": "Qué se comprueba",
+  "open": "Abrir app",
+  "session": "Sesión",
+  "shared": "Cada participante trabaja sobre su propia asignatura y cada sesión parte de lo producido en la anterior: la guía docente de SyllabusAI orienta la sesión de AulIA y la app de ForjaIA, y los materiales de la sesión 2 son la entrada de ClarIA, TutorIA y ExamForge.",
+  "apps": {
+   "sillabusAI": {
+    "what": "Genera la guía docente, el sílabo o el programa según el país (España, Portugal, México, Brasil, Argentina, Colombia, Chile, Perú) o en modo genérico, con créditos, escala de calificación, recuperación y asistencia.",
+    "chk": "El código comprueba el alineamiento entre resultados, actividades y evaluación, las horas, los códigos oficiales y la bibliografía en OpenAlex y Crossref."
+   },
+   "aulia": {
+    "what": "Siete agentes diseñan una sesión de clase a partir de un tema y, si quieres, de tus apuntes: plan editable, diapositivas con guion oral, cuestionarios, proyecto ABP con rúbrica y guía minutada. Exporta PowerPoint, Word y Moodle (GIFT y XML).",
+    "chk": "Un revisor pedagógico devuelve a corrección lo que falla; el código comprueba totales, respuestas correctas, pesos de la rúbrica, tiempos y cifras que no están en el documento."
+   },
+   "nanoclase": {
+    "what": "Mejora un material (Word, PDF, PowerPoint, Jupyter o Markdown) o lo crea desde cero, lo puntúa con una rúbrica de ocho dimensiones y saca de él un vídeo locutado con subtítulos, PowerPoint, Beamer, preguntas GIFT para Moodle y un plan de clase.",
+    "chk": "Un revisor de fidelidad señala lo que la reescritura añade sin estar en el original y otro comprueba cada pregunta contra el material; figuras y fórmulas se conservan."
+   },
+   "claria": {
+    "what": "Reescribe tus apuntes, Word, PowerPoint o PDF en lenguaje claro, dibuja los diagramas que hacen falta y monta una página web interactiva con preguntas y un vídeo con voz y subtítulos.",
+    "chk": "Cada idea clave lleva una cita literal de tu material verificada por código, y todo el texto es editable antes de compartirlo."
+   },
+   "tutoria": {
+    "what": "Subes tu tema y revisas la lección que propone la IA: objetivos, actividades con solución paso a paso, errores frecuentes y pistas graduadas. El estudiante la recorre con un tutor que le hace razonar en vez de darle la respuesta.",
+    "chk": "Un segundo agente verifica la lección y cada actividad cita tu material; incluye diagnóstico, comprobación y repaso espaciado, y un modo práctica que funciona sin clave."
+   },
+   "forja_ai": {
+    "what": "Convierte la idea de una tarea docente (tutor, caso simulado, cuestionario, tarjetas o método Feynman) en una app web de un solo fichero, lista para publicar en GitHub Pages con DOI de Zenodo, sin programar.",
+    "chk": "Las advertencias del docente que la IA no recoge se añaden por código al encargo y la app se prueba dentro de ForjaIA antes de publicarla; sus respuestas las revisa el profesor."
+   },
+   "examforge": {
+    "what": "Genera a partir del material de la asignatura un examen tipo test distinto para cada estudiante, imprime hojas de respuesta con casillas y corrige los escaneos en el navegador.",
+    "chk": "Cada respuesta correcta se apoya en una cita literal del material comprobada por código, y se equilibran las letras correctas entre modelos."
+   },
+   "corrigia": {
+    "what": "Sube o escanea las copias manuscritas de un examen; la IA transcribe cada respuesta, la puntúa criterio a criterio con tu baremo y redacta un comentario para cada estudiante, con estadísticas de clase y exportación a Word y Excel.",
+    "chk": "La nota la calcula la app sumando los criterios; lo dudoso o ilegible queda marcado para revisar y la cabecera se puede anonimizar."
+   },
+   "justitia": {
+    "what": "Aprende tu criterio a partir de una muestra que corriges tú y solo entonces propone la nota del resto del lote, con la cita literal de la respuesta que la sostiene.",
+    "chk": "Mide el acuerdo con validación ciega y cruzada y audita la deriva del criterio y la cobertura del rango de notas. La calificación siempre la firma el profesor."
+   },
+   "publication_radar": {
+    "what": "Escribe tu tema y descubre en qué revistas se publica de verdad; elige las que quieres seguir y consulta sus artículos nuevos, con DOI y exportación a Zotero.",
+    "chk": "Los artículos proceden de OpenAlex y PubMed: la IA nunca genera referencias, y cada revista que sugiere se comprueba en OpenAlex."
+   },
+   "meritoria": {
+    "what": "Prepara la solicitud de sexenio de la CNEAI: recupera indicadores y citas sin autocitas, ordena las aportaciones candidatas según los criterios del campo y redacta los indicios de relevancia e impacto.",
+    "chk": "La narrativa queda anclada a datos verificados de OpenAlex; lo que falta se marca [completar] y se auditan los requisitos formales antes del envío."
+   },
+   "acreditia": {
+    "what": "Para la vicedecanía de grado: carga encuestas, indicadores, quejas, plan de mejoras y actas, y un equipo de agentes redacta el autoinforme y el plan de mejora según el marco elegido (ANECA/ACREDITA, ESG, ARCU-SUR u otro).",
+    "chk": "El código recalcula los indicadores, verifica cada cita y cada cifra y marca lo que no tiene respaldo; la valoración de cada criterio la confirma una persona."
+   }
+  },
+  "courseH": "El curso",
+  "courseLead": "Cinco sesiones de 2 horas que siguen el trabajo del profesor: diseñar, explicar, evaluar e impulsar la carrera. Desde la segunda sesión se trabajan tres apps sobre la asignatura de cada participante (unos 30 minutos por app) y se sale con un entregable real.",
+  "thSes": "Sesión",
+  "thOut": "Entregable",
+  "sessions": [
+   {
+    "t": "Proveedores, modelos y tu clave de IA",
+    "a": "Presentación y guía de la clave",
+    "o": "Clave configurada con límite de gasto, modelo elegido y ficha de la asignatura (titulación, curso, resultados de aprendizaje y materiales disponibles)."
+   },
+   {
+    "t": "Diseñar la asignatura",
+    "a": "SyllabusAI · AulIA · NanoClase",
+    "o": "Guía docente comprobada, una sesión de clase completa exportada a Moodle y un material propio mejorado con su vídeo y su banco de preguntas."
+   },
+   {
+    "t": "Explicar y acompañar al estudiante",
+    "a": "ClarIA · TutorIA · ForjaIA",
+    "o": "Página interactiva y vídeo de un tema, lección socrática compartida por enlace y una app docente propia probada y lista para publicar."
+   },
+   {
+    "t": "Evaluar con criterio",
+    "a": "ExamForge · CorrigIA · JustitIA",
+    "o": "Examen tipo test con un modelo por estudiante, lote de exámenes manuscritos corregido con tu baremo e informe de acuerdo y equidad de la corrección."
+   },
+   {
+    "t": "Investigación, carrera y calidad",
+    "a": "Publication Radar · MeritorIA · AcreditIA",
+    "o": "Radar de revistas del área, borrador de la solicitud de sexenio y autoinforme de prueba con su plan de mejora."
+   }
+  ],
+  "keyH": "Tu clave de IA",
+  "keyLead": "Las apps usan la API del proveedor con tu propia clave. La clave se guarda solo en tu navegador y nunca pasa por un servidor del curso.",
+  "keyStepsH": "Crear la clave con límite de gasto",
+  "keySteps": [
+   "Crea una cuenta en la plataforma de desarrolladores del proveedor (en el curso, platform.openai.com).",
+   "Añade un método de pago y fija un límite de gasto mensual bajo antes de crear la clave.",
+   "Crea una clave de API, cópiala y guárdala en un lugar seguro: no se vuelve a mostrar.",
+   "Pégala en la app, carga la lista de modelos disponibles para tu clave y elige uno económico.",
+   "Si la clave se expone, revócala en la plataforma y crea otra."
+  ],
+  "keyChooseH": "Cómo elegir modelo",
+  "keyChoose": [
+   "Capacidad: los modelos grandes razonan mejor; los pequeños bastan para redactar y resumir.",
+   "Coste: se paga por tokens (precio por millón); preparar una sesión de clase completa cuesta céntimos.",
+   "Ventana de contexto: cuánto texto cabe en una petición; 1.000 tokens equivalen a unas 2 o 3 páginas.",
+   "Privacidad: el uso por API no se emplea para entrenar por defecto, pero los datos personales de estudiantes no deben enviarse identificables."
+  ],
+  "rulesH": "Normas de uso",
+  "rulesLead": "Se aplican en todas las sesiones y en todas las apps.",
+  "privH": "Protección de datos",
+  "priv": [
+   "Solo datos anonimizados: nunca nombres, DNI, NIA ni notas de estudiantes identificables.",
+   "Quita o anonimiza la cabecera de exámenes y trabajos antes de subirlos.",
+   "Anonimiza antes de enviar: el texto y los documentos viajan al proveedor de IA.",
+   "Usa materiales propios o que tengas derecho a usar en tu docencia.",
+   "Cada participante usa su propia clave, guardada solo en su navegador."
+  ],
+  "ethH": "Uso responsable",
+  "eth": [
+   "Revisa todo lo que propone la IA antes de compartirlo con tus estudiantes: la responsabilidad es tuya.",
+   "La nota siempre la firma el profesor: la IA propone y el profesor decide.",
+   "Informa a tus estudiantes de cuándo y cómo usas IA en la docencia y en la evaluación.",
+   "Ninguna referencia entra sin verificar: las apps marcan las que no encuentran.",
+   "Las valoraciones simuladas (MeritorIA, AcreditIA) orientan, pero no predicen la evaluación real."
+  ],
+  "footOrg": "Curso «ProfesorIA» · Potencia tu docencia con IA · Formación del profesorado universitario",
+  "vsH": "¿Por qué usar tu clave de API y no el chatbot con suscripción mensual?",
+  "chatH": "Chatbot con suscripción mensual (ChatGPT, Gemini, Claude)",
+  "chat": [
+   "Cuota fija al mes por cada proveedor, la uses mucho o poco.",
+   "Un proveedor por suscripción: comparar o combinar modelos exige pagar varias.",
+   "Conversación abierta: la calidad depende de cómo preguntes y el resultado cambia de una vez a otra.",
+   "Las citas, cifras y respuestas correctas que devuelve las tienes que comprobar tú a mano.",
+   "Las tareas largas (una guía docente, una sesión completa, un lote de exámenes) se hacen pregunta a pregunta, copiando y pegando.",
+   "En los planes de consumo, las conversaciones pueden usarse para entrenar modelos según la configuración de tu cuenta."
+  ],
+  "apiH": "Clave de API en estas apps",
+  "api": [
+   "Pagas solo lo que usas, por tokens: la mayoría de tareas cuestan céntimos, con un límite de gasto que fijas tú.",
+   "Eliges proveedor y modelo en cada tarea: OpenAI, Gemini o Claude.",
+   "Flujo fijo y reproducible: los mismos pasos, las mismas instrucciones y el modelo que elegiste quedan registrados.",
+   "La IA propone y el código comprueba: citas de tu material, respuestas correctas, horas, pesos de la rúbrica y notas calculadas.",
+   "Equipos de agentes trabajan en paralelo (siete en AulIA, un equipo completo en AcreditIA) y entregan documentos completos.",
+   "Por API los datos no se usan para entrenar por defecto, y la clave se guarda solo en tu navegador."
+  ],
+  "vsNote": "Son complementarios: el chatbot va bien para explorar y conversar; las apps con clave, para producir entregables verificables. La suscripción al chatbot no incluye el uso de la API, que se factura aparte en la plataforma de desarrolladores de cada proveedor."
  },
  "en": {
   "title": "ProfesorIA · Boost your teaching with AI",
@@ -288,7 +500,154 @@ const T = {
    "meritoria": "Research assessment dossier for the sexenio",
    "acreditia": "Degree self-assessment report and improvement plan",
    "acta_ai": "Meeting minutes from notes or audio"
-  }
+  },
+  "navApps": "Apps",
+  "navCourse": "Course",
+  "navKey": "AI key",
+  "navRules": "Rules of use",
+  "appsH": "The twelve apps",
+  "appsLead": "Each app runs in the browser, with no installation or server, using OpenAI, Google Gemini or Anthropic Claude. The AI proposes and the code checks.",
+  "checks": "What is checked",
+  "open": "Open app",
+  "session": "Session",
+  "shared": "Each participant works on their own course and each session builds on the previous one: the SyllabusAI course guide steers the AulIA session and the ForjaIA app, and the materials from session 2 feed ClarIA, TutorIA and ExamForge.",
+  "apps": {
+   "sillabusAI": {
+    "what": "Generates the course guide, syllabus or programme for each country (Spain, Portugal, Mexico, Brazil, Argentina, Colombia, Chile, Peru) or in generic mode, with credits, grading scale, resits and attendance.",
+    "chk": "The code checks the alignment between outcomes, activities and assessment, the hours, the official codes and the bibliography in OpenAlex and Crossref."
+   },
+   "aulia": {
+    "what": "Seven agents design a class session from a topic and, optionally, your notes: editable plan, slides with speaker script, quizzes, a project-based task with a rubric and a timed teaching guide. Exports PowerPoint, Word and Moodle (GIFT and XML).",
+    "chk": "A pedagogical reviewer sends back what fails; the code checks totals, correct answers, rubric weights, timings and figures not found in the document."
+   },
+   "nanoclase": {
+    "what": "Improves a material (Word, PDF, PowerPoint, Jupyter or Markdown) or creates it from scratch, scores it against an eight-dimension rubric and turns it into a narrated video with subtitles, PowerPoint, Beamer, GIFT questions for Moodle and a lesson plan.",
+    "chk": "A fidelity reviewer flags what the rewrite adds that is not in the original and another checks every question against the material; figures and formulas are kept."
+   },
+   "claria": {
+    "what": "Rewrites your notes, Word, PowerPoint or PDF in clear language, draws the diagrams needed and builds an interactive web page with questions and a video with voice and subtitles.",
+    "chk": "Every key idea carries a literal quote from your material verified by code, and all text can be edited before sharing."
+   },
+   "tutoria": {
+    "what": "You upload your topic and review the lesson the AI proposes: objectives, activities with step-by-step solutions, common errors and graded hints. Students work through it with a tutor that makes them reason instead of giving the answer.",
+    "chk": "A second agent verifies the lesson and every activity quotes your material; it includes diagnosis, checking and spaced review, plus a practice mode that works without a key."
+   },
+   "forja_ai": {
+    "what": "Turns the idea for a teaching task (tutor, simulated case, quiz, flashcards or Feynman method) into a single-file web app, ready to publish on GitHub Pages with a Zenodo DOI, with no coding.",
+    "chk": "The lecturer's warnings that the AI misses are added to the brief by code, and the app is tested inside ForjaIA before publishing; the lecturer reviews its answers."
+   },
+   "examforge": {
+    "what": "Generates from the course material a different multiple-choice exam for each student, prints answer sheets with boxes and marks the scans in the browser.",
+    "chk": "Every correct answer rests on a literal quote from the material checked by code, and correct letters are balanced across versions."
+   },
+   "corrigia": {
+    "what": "Upload or scan handwritten exam scripts; the AI transcribes each answer, scores it criterion by criterion with your marking scheme and writes feedback for each student, with class statistics and export to Word and Excel.",
+    "chk": "The app computes the grade by adding the criteria; doubtful or illegible answers are flagged for review and the header can be anonymised."
+   },
+   "justitia": {
+    "what": "Learns your criterion from a sample you mark yourself and only then proposes grades for the rest of the batch, quoting the part of the answer that supports each one.",
+    "chk": "It measures agreement with blind cross-validation and audits criterion drift and coverage of the grade range. The grade is always signed by the lecturer."
+   },
+   "publication_radar": {
+    "what": "Type your topic and find out which journals actually publish on it; choose the ones to follow and browse their new articles, with DOI and Zotero export.",
+    "chk": "Articles come from OpenAlex and PubMed: the AI never generates references, and every journal it suggests is checked in OpenAlex."
+   },
+   "meritoria": {
+    "what": "Prepares the CNEAI sexenio application: retrieves indicators and citations excluding self-citations, ranks candidate contributions by the field's criteria and drafts the relevance and impact narrative.",
+    "chk": "The narrative is anchored to verified OpenAlex data; anything missing is marked [complete] and formal requirements are audited before submission."
+   },
+   "acreditia": {
+    "what": "For degree coordinators: load surveys, indicators, complaints, improvement plans and minutes, and a team of agents drafts the self-assessment report and improvement plan for the chosen framework (ANECA/ACREDITA, ESG, ARCU-SUR or other).",
+    "chk": "The code recomputes the indicators, verifies every quote and figure and flags what has no support; a person confirms the rating of each criterion."
+   }
+  },
+  "courseH": "The course",
+  "courseLead": "Five 2-hour sessions following a lecturer's work: design, explain, assess and advance your career. From the second session on, three apps are applied to each participant's course (about 30 minutes per app) and everyone leaves with a real deliverable.",
+  "thSes": "Session",
+  "thOut": "Deliverable",
+  "sessions": [
+   {
+    "t": "Providers, models and your AI key",
+    "a": "Presentation and key guide",
+    "o": "Key set up with a spending limit, model chosen and a course profile (degree, year, learning outcomes and available materials)."
+   },
+   {
+    "t": "Design the course",
+    "a": "SyllabusAI · AulIA · NanoClase",
+    "o": "Checked course guide, a complete class session exported to Moodle and one of your own materials improved, with its video and question bank."
+   },
+   {
+    "t": "Explain and support students",
+    "a": "ClarIA · TutorIA · ForjaIA",
+    "o": "Interactive page and video for a topic, a Socratic lesson shared by link and your own teaching app, tested and ready to publish."
+   },
+   {
+    "t": "Assess with sound judgement",
+    "a": "ExamForge · CorrigIA · JustitIA",
+    "o": "Multiple-choice exam with one version per student, a batch of handwritten exams marked with your scheme and a report on marking agreement and fairness."
+   },
+   {
+    "t": "Research, career and quality",
+    "a": "Publication Radar · MeritorIA · AcreditIA",
+    "o": "Journal radar for your field, draft sexenio application and a trial self-assessment report with its improvement plan."
+   }
+  ],
+  "keyH": "Your AI key",
+  "keyLead": "The apps use the provider's API with your own key. The key is stored only in your browser and never goes through a course server.",
+  "keyStepsH": "Create the key with a spending limit",
+  "keySteps": [
+   "Create an account on the provider's developer platform (in the course, platform.openai.com).",
+   "Add a payment method and set a low monthly spending limit before creating the key.",
+   "Create an API key, copy it and keep it somewhere safe: it is not shown again.",
+   "Paste it into the app, load the list of models available for your key and choose an affordable one.",
+   "If the key is exposed, revoke it on the platform and create a new one."
+  ],
+  "keyChooseH": "How to choose a model",
+  "keyChoose": [
+   "Capability: large models reason better; small ones are enough for drafting and summarising.",
+   "Cost: you pay per token (price per million); preparing a complete class session costs cents.",
+   "Context window: how much text fits in one request; 1,000 tokens are about 2 or 3 pages.",
+   "Privacy: API usage is not used for training by default, but students' personal data must not be sent in identifiable form."
+  ],
+  "rulesH": "Rules of use",
+  "rulesLead": "They apply in every session and every app.",
+  "privH": "Data protection",
+  "priv": [
+   "Anonymised data only: never names, ID numbers, student numbers or grades of identifiable students.",
+   "Remove or anonymise the header of exams and assignments before uploading them.",
+   "Anonymise before sending: text and documents travel to the AI provider.",
+   "Use your own materials or materials you are entitled to use in your teaching.",
+   "Each participant uses their own key, stored only in their browser."
+  ],
+  "ethH": "Responsible use",
+  "eth": [
+   "Review everything the AI proposes before sharing it with your students: the responsibility is yours.",
+   "The grade is always signed by the lecturer: the AI proposes and the lecturer decides.",
+   "Tell your students when and how you use AI in teaching and assessment.",
+   "No reference goes in unverified: the apps flag those they cannot find.",
+   "Simulated assessments (MeritorIA, AcreditIA) give guidance but do not predict the real evaluation."
+  ],
+  "footOrg": "«ProfesorIA» course · Boost your teaching with AI · University faculty training",
+  "vsH": "Why use your API key rather than a monthly chatbot subscription?",
+  "chatH": "Chatbot with a monthly subscription (ChatGPT, Gemini, Claude)",
+  "chat": [
+   "Fixed monthly fee per provider, whether you use it a lot or a little.",
+   "One provider per subscription: comparing or combining models means paying for several.",
+   "Open conversation: quality depends on how you ask and results vary from one time to the next.",
+   "You have to check the quotes, figures and correct answers it returns by hand.",
+   "Long tasks (a course guide, a full session, a batch of exams) are done question by question, copying and pasting.",
+   "On consumer plans, conversations may be used to train models depending on your account settings."
+  ],
+  "apiH": "API key in these apps",
+  "api": [
+   "You pay only for what you use, per token: most tasks cost cents, with a spending limit you set.",
+   "You choose provider and model for each task: OpenAI, Gemini or Claude.",
+   "Fixed, reproducible workflow: the same steps, the same instructions and the model you chose are recorded.",
+   "The AI proposes and the code checks: quotes from your material, correct answers, hours, rubric weights and computed grades.",
+   "Teams of agents work in parallel (seven in AulIA, a full team in AcreditIA) and deliver complete documents.",
+   "Via the API, data is not used for training by default, and the key is stored only in your browser."
+  ],
+  "vsNote": "They are complementary: the chatbot is good for exploring and conversing; the apps with a key, for producing verifiable deliverables. A chatbot subscription does not include API usage, which is billed separately on each provider's developer platform."
  },
  "pt": {
   "title": "ProfesorIA · Potencia a tua docência com IA",
@@ -350,7 +709,154 @@ const T = {
    "meritoria": "Memória de contributos para o sexénio",
    "acreditia": "Relatório de autoavaliação do curso e plano de melhoria",
    "acta_ai": "Atas de reuniões a partir de notas ou áudio"
-  }
+  },
+  "navApps": "Apps",
+  "navCourse": "Curso",
+  "navKey": "Chave de IA",
+  "navRules": "Normas de utilização",
+  "appsH": "As doze apps",
+  "appsLead": "Cada app funciona no navegador, sem instalação nem servidor, com OpenAI, Google Gemini ou Anthropic Claude. A IA propõe e o código verifica.",
+  "checks": "O que se verifica",
+  "open": "Abrir app",
+  "session": "Sessão",
+  "shared": "Cada participante trabalha sobre a sua própria unidade curricular e cada sessão parte do que foi produzido na anterior: o guia do SyllabusAI orienta a sessão do AulIA e a app do ForjaIA, e os materiais da sessão 2 são a entrada do ClarIA, do TutorIA e do ExamForge.",
+  "apps": {
+   "sillabusAI": {
+    "what": "Gera o guia da unidade curricular, o sílabo ou o plano de ensino segundo o país (Espanha, Portugal, México, Brasil, Argentina, Colômbia, Chile, Peru) ou em modo genérico, com créditos, escala de classificação, recurso e assiduidade.",
+    "chk": "O código verifica o alinhamento entre resultados, atividades e avaliação, as horas, os códigos oficiais e a bibliografia no OpenAlex e no Crossref."
+   },
+   "aulia": {
+    "what": "Sete agentes desenham uma sessão de aula a partir de um tema e, se quiseres, dos teus apontamentos: plano editável, diapositivos com guião oral, questionários, projeto ABP com rubrica e guia cronometrado. Exporta PowerPoint, Word e Moodle (GIFT e XML).",
+    "chk": "Um revisor pedagógico devolve para correção o que falha; o código verifica totais, respostas corretas, pesos da rubrica, tempos e números que não estão no documento."
+   },
+   "nanoclase": {
+    "what": "Melhora um material (Word, PDF, PowerPoint, Jupyter ou Markdown) ou cria-o de raiz, pontua-o com uma rubrica de oito dimensões e gera a partir dele um vídeo narrado com legendas, PowerPoint, Beamer, perguntas GIFT para Moodle e um plano de aula.",
+    "chk": "Um revisor de fidelidade assinala o que a reescrita acrescenta sem estar no original e outro verifica cada pergunta contra o material; figuras e fórmulas mantêm-se."
+   },
+   "claria": {
+    "what": "Reescreve os teus apontamentos, Word, PowerPoint ou PDF em linguagem clara, desenha os diagramas necessários e monta uma página web interativa com perguntas e um vídeo com voz e legendas.",
+    "chk": "Cada ideia-chave leva uma citação literal do teu material verificada por código, e todo o texto é editável antes de o partilhar."
+   },
+   "tutoria": {
+    "what": "Carregas o teu tema e revês a lição que a IA propõe: objetivos, atividades com resolução passo a passo, erros frequentes e pistas graduadas. O estudante percorre-a com um tutor que o faz raciocinar em vez de lhe dar a resposta.",
+    "chk": "Um segundo agente verifica a lição e cada atividade cita o teu material; inclui diagnóstico, verificação e revisão espaçada, e um modo de prática que funciona sem chave."
+   },
+   "forja_ai": {
+    "what": "Converte a ideia de uma tarefa docente (tutor, caso simulado, questionário, cartões ou método Feynman) numa app web num só ficheiro, pronta a publicar no GitHub Pages com DOI do Zenodo, sem programar.",
+    "chk": "Os avisos do docente que a IA não recolhe são acrescentados por código ao pedido e a app é testada dentro do ForjaIA antes de ser publicada; as respostas revê-as o professor."
+   },
+   "examforge": {
+    "what": "Gera a partir do material da unidade curricular um exame de escolha múltipla diferente para cada estudante, imprime folhas de resposta com quadrículas e corrige as digitalizações no navegador.",
+    "chk": "Cada resposta correta apoia-se numa citação literal do material verificada por código, e as letras corretas são equilibradas entre versões."
+   },
+   "corrigia": {
+    "what": "Carrega ou digitaliza as provas manuscritas de um exame; a IA transcreve cada resposta, pontua-a critério a critério com os teus critérios e redige um comentário para cada estudante, com estatísticas da turma e exportação para Word e Excel.",
+    "chk": "A nota é calculada pela app somando os critérios; o duvidoso ou ilegível fica assinalado para rever e o cabeçalho pode ser anonimizado."
+   },
+   "justitia": {
+    "what": "Aprende o teu critério a partir de uma amostra que tu corriges e só então propõe a nota do resto do lote, com a citação literal da resposta que a sustenta.",
+    "chk": "Mede a concordância com validação cega e cruzada e audita a deriva do critério e a cobertura da escala de notas. A classificação é sempre assinada pelo professor."
+   },
+   "publication_radar": {
+    "what": "Escreve o teu tema e descobre em que revistas se publica de facto; escolhe as que queres seguir e consulta os seus artigos novos, com DOI e exportação para Zotero.",
+    "chk": "Os artigos provêm do OpenAlex e do PubMed: a IA nunca gera referências, e cada revista que sugere é verificada no OpenAlex."
+   },
+   "meritoria": {
+    "what": "Prepara a candidatura ao sexénio da CNEAI: recupera indicadores e citações sem autocitações, ordena os contributos candidatos segundo os critérios da área e redige os indícios de relevância e impacto.",
+    "chk": "A narrativa fica ancorada em dados verificados do OpenAlex; o que falta é marcado [completar] e os requisitos formais são auditados antes da submissão."
+   },
+   "acreditia": {
+    "what": "Para a coordenação do curso: carrega inquéritos, indicadores, reclamações, plano de melhorias e atas, e uma equipa de agentes redige o relatório de autoavaliação e o plano de melhoria segundo o referencial escolhido (ANECA/ACREDITA, ESG, ARCU-SUR ou outro).",
+    "chk": "O código recalcula os indicadores, verifica cada citação e cada número e assinala o que não tem suporte; a apreciação de cada critério é confirmada por uma pessoa."
+   }
+  },
+  "courseH": "O curso",
+  "courseLead": "Cinco sessões de 2 horas que seguem o trabalho do professor: desenhar, explicar, avaliar e impulsionar a carreira. A partir da segunda sessão, aplicam-se três apps à unidade curricular de cada participante (cerca de 30 minutos por app) e sai-se com um resultado real.",
+  "thSes": "Sessão",
+  "thOut": "Resultado",
+  "sessions": [
+   {
+    "t": "Fornecedores, modelos e a tua chave de IA",
+    "a": "Apresentação e guia da chave",
+    "o": "Chave configurada com limite de gastos, modelo escolhido e ficha da unidade curricular (curso, ano, resultados de aprendizagem e materiais disponíveis)."
+   },
+   {
+    "t": "Desenhar a unidade curricular",
+    "a": "SyllabusAI · AulIA · NanoClase",
+    "o": "Guia verificado, uma sessão de aula completa exportada para Moodle e um material próprio melhorado com o seu vídeo e banco de perguntas."
+   },
+   {
+    "t": "Explicar e acompanhar o estudante",
+    "a": "ClarIA · TutorIA · ForjaIA",
+    "o": "Página interativa e vídeo de um tema, lição socrática partilhada por ligação e uma app docente própria testada e pronta a publicar."
+   },
+   {
+    "t": "Avaliar com critério",
+    "a": "ExamForge · CorrigIA · JustitIA",
+    "o": "Exame de escolha múltipla com uma versão por estudante, lote de exames manuscritos corrigido com os teus critérios e relatório de concordância e equidade da correção."
+   },
+   {
+    "t": "Investigação, carreira e qualidade",
+    "a": "Publication Radar · MeritorIA · AcreditIA",
+    "o": "Radar de revistas da área, rascunho da candidatura ao sexénio e relatório de autoavaliação de teste com o seu plano de melhoria."
+   }
+  ],
+  "keyH": "A tua chave de IA",
+  "keyLead": "As apps usam a API do fornecedor com a tua própria chave. A chave é guardada apenas no teu navegador e nunca passa por um servidor do curso.",
+  "keyStepsH": "Criar a chave com limite de gastos",
+  "keySteps": [
+   "Cria uma conta na plataforma de programadores do fornecedor (no curso, platform.openai.com).",
+   "Adiciona um método de pagamento e define um limite de gastos mensal baixo antes de criar a chave.",
+   "Cria uma chave de API, copia-a e guarda-a num lugar seguro: não volta a ser mostrada.",
+   "Cola-a na app, carrega a lista de modelos disponíveis para a tua chave e escolhe um económico.",
+   "Se a chave ficar exposta, revoga-a na plataforma e cria outra."
+  ],
+  "keyChooseH": "Como escolher modelo",
+  "keyChoose": [
+   "Capacidade: os modelos grandes raciocinam melhor; os pequenos bastam para redigir e resumir.",
+   "Custo: paga-se por tokens (preço por milhão); preparar uma sessão de aula completa custa cêntimos.",
+   "Janela de contexto: quanto texto cabe num pedido; 1.000 tokens equivalem a cerca de 2 ou 3 páginas.",
+   "Privacidade: o uso por API não é usado para treino por defeito, mas os dados pessoais dos estudantes não devem ser enviados de forma identificável."
+  ],
+  "rulesH": "Normas de utilização",
+  "rulesLead": "Aplicam-se em todas as sessões e em todas as apps.",
+  "privH": "Proteção de dados",
+  "priv": [
+   "Apenas dados anonimizados: nunca nomes, números de identificação, números de estudante ou notas de estudantes identificáveis.",
+   "Retira ou anonimiza o cabeçalho de exames e trabalhos antes de os carregar.",
+   "Anonimiza antes de enviar: o texto e os documentos viajam até ao fornecedor de IA.",
+   "Usa materiais próprios ou que tenhas direito a usar na tua docência.",
+   "Cada participante usa a sua própria chave, guardada apenas no seu navegador."
+  ],
+  "ethH": "Uso responsável",
+  "eth": [
+   "Revê tudo o que a IA propõe antes de o partilhar com os teus estudantes: a responsabilidade é tua.",
+   "A nota é sempre assinada pelo professor: a IA propõe e o professor decide.",
+   "Informa os teus estudantes de quando e como usas IA na docência e na avaliação.",
+   "Nenhuma referência entra sem verificação: as apps assinalam as que não encontram.",
+   "As apreciações simuladas (MeritorIA, AcreditIA) orientam, mas não preveem a avaliação real."
+  ],
+  "footOrg": "Curso «ProfesorIA» · Potencia a tua docência com IA · Formação do professorado universitário",
+  "vsH": "Porquê usar a tua chave de API e não o chatbot com subscrição mensal?",
+  "chatH": "Chatbot com subscrição mensal (ChatGPT, Gemini, Claude)",
+  "chat": [
+   "Mensalidade fixa por cada fornecedor, quer o uses muito ou pouco.",
+   "Um fornecedor por subscrição: comparar ou combinar modelos obriga a pagar várias.",
+   "Conversa aberta: a qualidade depende de como perguntas e o resultado muda de uma vez para outra.",
+   "As citações, números e respostas corretas que devolve tens de os verificar tu à mão.",
+   "As tarefas longas (um guia, uma sessão completa, um lote de exames) fazem-se pergunta a pergunta, copiando e colando.",
+   "Nos planos de consumo, as conversas podem ser usadas para treinar modelos conforme a configuração da tua conta."
+  ],
+  "apiH": "Chave de API nestas apps",
+  "api": [
+   "Pagas só o que usas, por tokens: a maioria das tarefas custa cêntimos, com um limite de gastos que defines tu.",
+   "Escolhes fornecedor e modelo em cada tarefa: OpenAI, Gemini ou Claude.",
+   "Fluxo fixo e reprodutível: os mesmos passos, as mesmas instruções e o modelo que escolheste ficam registados.",
+   "A IA propõe e o código verifica: citações do teu material, respostas corretas, horas, pesos da rubrica e notas calculadas.",
+   "Equipas de agentes trabalham em paralelo (sete no AulIA, uma equipa completa no AcreditIA) e entregam documentos completos.",
+   "Por API os dados não são usados para treino por defeito, e a chave é guardada apenas no teu navegador."
+  ],
+  "vsNote": "São complementares: o chatbot serve para explorar e conversar; as apps com chave, para produzir resultados verificáveis. A subscrição do chatbot não inclui o uso da API, que é faturado à parte na plataforma de programadores de cada fornecedor."
  }
 };
 
@@ -378,6 +884,31 @@ function render(){
           : `<a class="chip comp" href="${url}" target="_blank" rel="noopener"><span class="tag">${esc(L.tagComp)}</span><b>${esc(COMP[id])}</b>${esc(L.short[id])}</a>`;
       }).join("")}
     </div>`).join("");
+
+  document.getElementById("groups").innerHTML = [2,3,4,5].map(n => {
+    const cards = APPS.filter(a => a.ses === n).map(a => {
+      const A = L.apps[a.id];
+      const url = `https://fborrasumh.github.io/${a.id}/`;
+      return `<article class="card">
+        <div class="card-h"><div class="icon-box"><i class="ti ${a.icon}"></i></div><h4>${a.name}</h4></div>
+        <p>${esc(A.what)}</p>
+        <div class="chk"><b>${esc(L.checks)}</b>${esc(A.chk)}</div>
+        <div class="foot"><a class="btn" href="${url}" target="_blank" rel="noopener"><i class="ti ti-external-link"></i> ${esc(L.open)}</a></div>
+      </article>`;
+    }).join("");
+    return `<div class="sgroup" style="--c:var(${SES_COLOR[n]})"><h3>${esc(L.session)} ${n} · ${esc(L.sessions[n-1].t)}</h3><div class="grid">${cards}</div></div>`;
+  }).join("");
+
+  document.getElementById("sessions").innerHTML =
+    `<div class="srow head"><div></div><div>${esc(L.thSes)}</div><div class="hide-sm">${esc(L.thOut)}</div></div>` +
+    L.sessions.map((s,i) => `<div class="srow" style="--c:var(${SES_COLOR[i+1]})">
+      <div class="snum">${i+1}</div>
+      <div><div class="stit">${esc(s.t)}</div><div class="sapp">${esc(s.a)}</div></div>
+      <div class="hide-sm">${esc(s.o)}</div>
+    </div>`).join("");
+
+  const list = (id, arr) => { document.getElementById(id).innerHTML = arr.map(x => `<li>${esc(x)}</li>`).join(""); };
+  list("chatL", L.chat); list("apiL", L.api); list("keySteps", L.keySteps); list("keyChoose", L.keyChoose); list("priv", L.priv); list("eth", L.eth);
 }
 
 function setLang(l){
