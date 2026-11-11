@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ProfesorIA · Potencia tu docencia con IA</title>
+<meta name="description" content="Curso «ProfesorIA»: doce apps de IA en cinco sesiones y diecinueve complementarias, ordenadas por fase del trabajo docente.">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.19.0/dist/tabler-icons.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #f7f7f5; --surface: #fff; --border: #e4e3df; --border-strong: #cccbc6;
+  --text: #1a1916; --muted: #7a7872; --accent: #1a4fd8;
+  --s2: #1a4fd8; --s3: #126649; --s4: #6429a8; --s5: #c2186b;
+}
+body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color: var(--text); line-height: 1.55; }
+a { color: var(--accent); }
+
+/* HEADER */
+header { background: #1a1916; color: #fff; padding: 56px 24px 48px; text-align: center; position: relative; }
+.lang-toggle { position: absolute; top: 16px; right: 16px; display: inline-flex; border: 1px solid #3a3934; border-radius: 99px; overflow: hidden; }
+.lang-toggle button { background: transparent; color: #888; border: 0; font: 600 12px/1 'Inter', sans-serif; letter-spacing: .06em; padding: 7px 11px; cursor: pointer; }
+.lang-toggle button.active { background: #fff; color: #1a1916; }
+.org { display: inline-block; margin-bottom: 28px; background: #fff; border-radius: 12px; padding: 12px 18px; }
+.org img { height: 72px; width: auto; display: block; }
+.eyebrow { font-size: 11px; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; color: #777; margin-bottom: 14px; }
+h1 { font-family: 'Sora', sans-serif; font-size: clamp(2rem, 4.6vw, 3.1rem); font-weight: 800; line-height: 1.1; letter-spacing: -.03em; margin: 0 auto 14px; max-width: 820px; }
+h1 span { color: #6b8fff; }
+.sub { font-size: 1rem; color: #aaa; max-width: 600px; margin: 0 auto 30px; }
+.stats { display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; }
+.stat-n { font-family: 'Sora', sans-serif; font-size: 1.8rem; font-weight: 800; }
+.stat-l { font-size: .75rem; color: #777; text-transform: uppercase; letter-spacing: .08em; margin-top: 2px; }
+
+/* NAV */
+nav { position: sticky; top: 0; z-index: 5; background: rgba(247,247,245,.94); backdrop-filter: blur(6px); border-bottom: .5px solid var(--border); }
+nav .in { max-width: 1060px; margin: 0 auto; padding: 10px 24px; display: flex; gap: 6px; flex-wrap: wrap; }
+nav a { font-size: 13px; color: var(--muted); text-decoration: none; padding: 5px 12px; border-radius: 99px; border: .5px solid transparent; }
+nav a:hover { color: var(--text); border-color: var(--border-strong); background: var(--surface); }
+
+/* MAIN */
+main { max-width: 1060px; margin: 0 auto; padding: 40px 24px 80px; }
+section { margin-bottom: 56px; scroll-margin-top: 64px; }
+h2 { font-family: 'Sora', sans-serif; font-size: 1.5rem; font-weight: 800; letter-spacing: -.02em; margin-bottom: 6px; }
+.lead { color: var(--muted); margin-bottom: 22px; max-width: 760px; }
+
+/* APP CARDS, AGRUPADAS POR SESIÓN */
+.sgroup { margin-bottom: 28px; }
+.sgroup h3 { font-family: 'Sora', sans-serif; font-size: 1.05rem; font-weight: 800; margin-bottom: 12px; color: var(--c); }
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+.card { background: var(--surface); border: .5px solid var(--border); border-radius: 12px; padding: 20px; display: flex; flex-direction: column; gap: 10px; border-top: 4px solid var(--c); }
+.card-h { display: flex; align-items: center; gap: 12px; }
+.icon-box { width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 20px; color: #fff; background: var(--c); flex-shrink: 0; }
+.card h4 { font-family: 'Sora', sans-serif; font-size: 1.2rem; font-weight: 800; }
+.card p { font-size: 14px; color: #444; }
+.card .chk { font-size: 13px; color: #555; background: #faf9f7; border-radius: 8px; padding: 10px 12px; }
+.card .chk b { display: block; font-size: 11px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); margin-bottom: 3px; }
+.card .foot { margin-top: auto; display: flex; flex-wrap: wrap; gap: 8px; align-items: center; justify-content: space-between; padding-top: 6px; }
+.btn { display: inline-flex; align-items: center; gap: 6px; font: 600 13px 'Inter', sans-serif; padding: 7px 14px; border-radius: 99px; text-decoration: none; background: var(--c); color: #fff; }
+.shared { margin-top: 4px; font-size: 14px; color: #555; background: var(--surface); border: .5px solid var(--border); border-radius: 12px; padding: 14px 18px; }
+
+/* FRANJA DE FASES */
+:root { --comp: #b45309; }
+.legend { display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; font-size: 13px; color: var(--muted); margin-bottom: 16px; }
+.legend span { display: inline-flex; align-items: center; gap: 6px; }
+.legend i.sw { width: 14px; height: 14px; border-radius: 4px; background: var(--c); display: inline-block; }
+.legend i.sw.comp { background: #fff; border: 1.5px dashed var(--comp); }
+.phases-wrap { width: min(1400px, calc(100vw - 32px)); position: relative; left: 50%; transform: translateX(-50%); overflow-x: auto; padding-bottom: 6px; }
+.phases { display: grid; grid-template-columns: repeat(7, minmax(170px, 1fr)); gap: 10px; min-width: 1240px; }
+.phase { background: var(--surface); border: .5px solid var(--border); border-radius: 12px; padding: 12px; display: flex; flex-direction: column; gap: 8px; }
+.phase-h { display: flex; align-items: baseline; gap: 8px; padding-bottom: 8px; border-bottom: .5px solid var(--border); }
+.phase-n { font-family: 'Sora', sans-serif; font-weight: 800; font-size: 1.15rem; color: var(--muted); }
+.phase-t { font-family: 'Sora', sans-serif; font-weight: 700; font-size: .9rem; line-height: 1.25; }
+.chip { display: block; text-decoration: none; border-radius: 10px; padding: 9px 11px; font-size: 12.5px; line-height: 1.35; position: relative; }
+.chip b { display: block; font-family: 'Sora', sans-serif; font-size: 13.5px; margin-bottom: 2px; padding-right: 34px; }
+.chip .tag { position: absolute; top: 8px; right: 8px; font-size: 10px; font-weight: 600; letter-spacing: .04em; border-radius: 99px; padding: 1px 6px; }
+.chip.ses { background: var(--c); color: #fff; }
+.chip.ses .tag { background: rgba(255,255,255,.22); }
+.chip.comp { background: #fff; border: 1.5px dashed var(--comp); color: #444; }
+.chip.comp b { color: var(--comp); }
+.chip.comp .tag { background: #fdf3e7; color: var(--comp); }
+.chip:hover { filter: brightness(.95); }
+.phases-note { margin-top: 12px; font-size: 13px; color: var(--muted); }
+.vs-h { font-family: 'Sora', sans-serif; font-size: 1.05rem; font-weight: 800; margin-bottom: 12px; }
+.vs .box.api { border: 1.5px solid var(--accent); }
+.vs .box.api h3 { color: var(--accent); }
+.vs-note { margin: 10px 0 26px; }
+
+/* SESSIONS */
+.sessions { background: var(--surface); border: .5px solid var(--border); border-radius: 12px; overflow: hidden; }
+.srow { display: grid; grid-template-columns: 56px 1fr 1fr; gap: 16px; padding: 16px 18px; border-bottom: .5px solid var(--border); align-items: start; font-size: 14px; }
+.srow:last-child { border-bottom: 0; }
+.srow.head { background: #faf9f7; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); padding: 10px 18px; }
+.snum { font-family: 'Sora', sans-serif; font-weight: 800; font-size: 1.3rem; color: var(--c, var(--text)); }
+.stit { font-weight: 600; }
+.sapp { font-size: 12px; color: var(--muted); }
+.slink { display: inline-flex; align-items: center; gap: 5px; margin-top: 6px; font-size: 13px; font-weight: 600; text-decoration: none; }
+
+/* STEPS / RULES */
+.cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; }
+.box { background: var(--surface); border: .5px solid var(--border); border-radius: 12px; padding: 20px 22px; }
+.box h3 { font-size: 15px; font-weight: 600; margin-bottom: 10px; display: flex; gap: 8px; align-items: center; }
+ol, ul { padding-left: 20px; font-size: 14px; color: #444; }
+li { margin-bottom: 7px; }
+.prov { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+.prov a { font-size: 13px; text-decoration: none; border: .5px solid var(--border-strong); border-radius: 99px; padding: 5px 12px; color: var(--text); background: #faf9f7; }
+.prov a:hover { border-color: var(--accent); }
+
+/* FOOTER */
+footer { background: var(--surface); border-top: .5px solid var(--border); padding: 28px 24px; text-align: center; font-size: 13px; color: var(--muted); }
+footer p + p { margin-top: 6px; }
+footer a { text-decoration: none; }
+
+a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+@media (max-width: 720px) {
+  .srow { grid-template-columns: 40px 1fr; }
+  .srow .hide-sm { display: none; }
+  .lang-toggle { top: 10px; right: 10px; }
+  .lang-toggle button { padding: 6px 8px; }
+  header { padding-top: 64px; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="lang-toggle" role="group" aria-label="Idioma / Language / Idioma" id="langs"></div>
+  <p class="eyebrow" data-i18n="eyebrow"></p>
+  <h1 data-i18n-html="h1"></h1>
+  <p class="sub" data-i18n="sub"></p>
+  <div class="stats">
+    <div><div class="stat-n">12</div><div class="stat-l" data-i18n="stApps"></div></div>
+    <div><div class="stat-n">19</div><div class="stat-l" data-i18n="stComp"></div></div>
+    <div><div class="stat-n">5</div><div class="stat-l" data-i18n="stSes"></div></div>
+    <div><div class="stat-n">10 h</div><div class="stat-l" data-i18n="stHours"></div></div>
+    <div><div class="stat-n">3</div><div class="stat-l" data-i18n="stLangs"></div></div>
+  </div>
+</header>
+
+<nav><div class="in">
+  <a href="#fases" data-i18n="navPhases"></a>
+</div></nav>
+
+<main>
+  <section id="fases">
+    <h2 data-i18n="phasesH"></h2>
+    <p class="lead" data-i18n="phasesLead"></p>
+    <div class="legend" id="legend"></div>
+    <div class="phases-wrap"><div class="phases" id="phases"></div></div>
+    <p class="phases-note" data-i18n="phasesNote"></p>
+  </section>
+</main>
+
+<footer>
+  <p><span data-i18n="footDev"></span> Fernando Borrás Rocher · <a href="https://orcid.org/0000-0002-5519-4573" target="_blank" rel="noopener">ORCID 0000-0002-5519-4573</a> · <a href="https://github.com/fborrasumh/profesoria" target="_blank" rel="noopener">GitHub</a> · <span data-i18n="footLic"></span></p>
+</footer>
+
+<script>
+/* APPS DEL CURSO: cada ficha enlaza a https://fborrasumh.github.io/<id>/ */
+const APPS = [{"id": "sillabusAI", "name": "SyllabusAI", "ses": 2}, {"id": "aulia", "name": "AulIA", "ses": 2}, {"id": "nanoclase", "name": "NanoClase", "ses": 2}, {"id": "claria", "name": "ClarIA", "ses": 3}, {"id": "tutoria", "name": "TutorIA", "ses": 3}, {"id": "forja_ai", "name": "ForjaIA", "ses": 3}, {"id": "examforge", "name": "ExamForge", "ses": 4}, {"id": "corrigia", "name": "CorrigIA", "ses": 4}, {"id": "justitia", "name": "JustitIA", "ses": 4}, {"id": "publication_radar", "name": "Publication Radar", "ses": 5}, {"id": "meritoria", "name": "MeritorIA", "ses": 5}, {"id": "acreditia", "name": "AcreditIA", "ses": 5}];
+/* FRANJA DE FASES: apps del curso (APPS) + complementarias del catálogo fborrasumh.github.io/ia */
+const COMP = {"pericia": "Pericia", "generator": "Generator", "casopracticoAI": "CasoPrácticoAI", "tuitia": "TuitIA", "escenia": "EscenIA", "relatoria": "RelatorIA", "poliglotia": "PoliglotIA", "mentoria": "MentorIA", "Estudia": "EstudIA", "criteria": "CriterIA", "TFG_evaluator": "TFG Evaluator", "evaluador_oral": "Evaluador Oral", "anticonvocatoria": "AntiConvocatorIA", "desafia": "DesafIA", "cribia": "CribIA", "doctoralia": "Doctoralia", "grantwriter": "GrantWriter", "revistafit": "RevistaFit", "acta_ai": "ActaAI"};
+const PHASES = [["sillabusAI", "aulia", "pericia", "generator", "casopracticoAI"], ["nanoclase", "claria", "tuitia", "escenia", "relatoria", "poliglotia"], ["tutoria", "forja_ai", "mentoria", "Estudia"], ["examforge", "corrigia", "anticonvocatoria", "TFG_evaluator", "evaluador_oral"], ["justitia", "desafia", "cribia", "criteria"], ["publication_radar", "doctoralia", "grantwriter", "revistafit"], ["meritoria", "acreditia", "acta_ai"]];
+const SES_COLOR = { 2:"--s2", 3:"--s3", 4:"--s4", 5:"--s5" };
+const LANGS = ["es","en","pt"];
+const T = {
+ "es": {
+  "title": "ProfesorIA · Potencia tu docencia con IA",
+  "eyebrow": "Curso · Formación del profesorado universitario",
+  "h1": "ProfesorIA: potencia tu <span>docencia</span> con IA",
+  "sub": "Doce apps web de un solo archivo, con tu propia clave de IA, para diseñar la asignatura, crear materiales, acompañar al estudiante, evaluar con criterio e impulsar tu carrera.",
+  "stApps": "apps",
+  "stComp": "complementarias",
+  "stSes": "sesiones",
+  "stHours": "de formación",
+  "stLangs": "idiomas",
+  "navPhases": "Fases",
+  "phasesH": "Las apps en cada fase del trabajo docente",
+  "phasesLead": "Las doce apps del curso y diecinueve apps complementarias del catálogo, ordenadas según la fase del trabajo del profesor en la que se usan.",
+  "phasesNote": "Las complementarias no forman parte de las sesiones: sirven para ampliar cada fase por tu cuenta. Revisa en cada una qué proveedor de IA admite. Los datos de estudiantes se anonimizan y la nota siempre la firma el profesor.",
+  "legSes": "Sesión",
+  "legComp": "Complementaria",
+  "tagComp": "+",
+  "phases": [
+   "Diseñar la asignatura",
+   "Crear materiales",
+   "Acompañar al estudiante",
+   "Evaluar",
+   "Equidad e integridad",
+   "Investigar",
+   "Carrera y calidad"
+  ],
+  "footDev": "Desarrollo:",
+  "footLic": "Licencia MIT",
+  "short": {
+   "sillabusAI": "Guía docente con horas, alineamiento y bibliografía comprobados",
+   "aulia": "Sesión completa: diapositivas, cuestionarios y proyecto con rúbrica",
+   "pericia": "Curso completo: índice, contenido, evaluación y proyectos",
+   "generator": "Asignatura completa a partir de tus materiales",
+   "casopracticoAI": "Casos, role-plays, debates y análisis críticos",
+   "nanoclase": "Mejora un material y saca vídeo, PowerPoint y preguntas GIFT",
+   "claria": "Tus apuntes en página interactiva y vídeo, con citas comprobadas",
+   "tuitia": "Tuits verificados que refuerzan el guion de tu clase",
+   "escenia": "Charlas por beats con cada cita y cifra comprobada",
+   "relatoria": "De la grabación de clase al cuaderno docente y los apuntes",
+   "poliglotia": "Traduce un PDF y lo convierte en presentación locutada",
+   "tutoria": "Tutor socrático sobre tu propia lección",
+   "forja_ai": "Tu propia app docente de un solo fichero, sin programar",
+   "mentoria": "Tutor de TFG y TFM que acompaña pero no escribe",
+   "Estudia": "Tutor sobre los apuntes del estudiante, con citas comprobadas",
+   "examforge": "Un test distinto por estudiante, con corrección por escáner",
+   "corrigia": "Corrección de exámenes manuscritos con tu baremo",
+   "anticonvocatoria": "Examen imprevisible a partir de los resultados de aprendizaje",
+   "TFG_evaluator": "TFG y TFM con tu rúbrica y tres evaluadores de IA",
+   "evaluador_oral": "Evaluación estructurada de exposiciones orales",
+   "justitia": "Aprende tu criterio, mide el acuerdo y audita la equidad",
+   "desafia": "Evaluador con rúbrica para iterar con IA de forma transparente",
+   "cribia": "Detector de IA con tasa de falsos positivos controlada",
+   "criteria": "Uso de IA con criterio y declaración para el trabajo",
+   "publication_radar": "Revistas que publican tu tema y sus artículos nuevos",
+   "doctoralia": "Estado del arte con citas verificadas y PRISMA",
+   "grantwriter": "Memoria para convocatorias de I+D+i",
+   "revistafit": "Elegir revista con evidencia y carta de presentación",
+   "meritoria": "Memoria de aportaciones para el sexenio",
+   "acreditia": "Autoinforme del título y plan de mejora",
+   "acta_ai": "Actas de reuniones a partir de notas o audio"
+  }
+ },
+ "en": {
+  "title": "ProfesorIA · Boost your teaching with AI",
+  "eyebrow": "Course · University faculty training",
+  "h1": "ProfesorIA: boost your <span>teaching</span> with AI",
+  "sub": "Twelve single-file web apps, with your own AI key, to design the course, create materials, support students, assess with sound judgement and advance your career.",
+  "stApps": "apps",
+  "stComp": "complementary",
+  "stSes": "sessions",
+  "stHours": "of training",
+  "stLangs": "languages",
+  "navPhases": "Phases",
+  "phasesH": "The apps at each stage of teaching work",
+  "phasesLead": "The twelve course apps and nineteen complementary apps from the catalogue, arranged by the stage of a lecturer's work in which they are used.",
+  "phasesNote": "The complementary apps are not part of the sessions: use them to go further in each stage on your own. Check which AI provider each one supports. Student data is anonymised and the grade is always signed by the lecturer.",
+  "legSes": "Session",
+  "legComp": "Complementary",
+  "tagComp": "+",
+  "phases": [
+   "Design the course",
+   "Create materials",
+   "Support students",
+   "Assess",
+   "Fairness and integrity",
+   "Research",
+   "Career and quality"
+  ],
+  "footDev": "Developed by",
+  "footLic": "MIT licence",
+  "short": {
+   "sillabusAI": "Course guide with checked hours, alignment and bibliography",
+   "aulia": "Full session: slides, quizzes and a project with a rubric",
+   "pericia": "Full course: outline, content, assessment and projects",
+   "generator": "A complete subject built from your materials",
+   "casopracticoAI": "Cases, role-plays, debates and critical analyses",
+   "nanoclase": "Improve a material and get video, PowerPoint and GIFT questions",
+   "claria": "Your notes as an interactive page and video, with checked quotes",
+   "tuitia": "Verified tweets that reinforce your lecture script",
+   "escenia": "Beat-by-beat talks with every quote and figure checked",
+   "relatoria": "From a class recording to teaching notebook and study notes",
+   "poliglotia": "Translate a PDF and turn it into a narrated presentation",
+   "tutoria": "Socratic tutor built on your own lesson",
+   "forja_ai": "Your own single-file teaching app, no coding",
+   "mentoria": "Thesis tutor that guides but never writes",
+   "Estudia": "Tutor on the student's own notes, with checked quotes",
+   "examforge": "A different test per student, with scanner marking",
+   "corrigia": "Marking of handwritten exams with your scheme",
+   "anticonvocatoria": "Unpredictable exam drawn from the learning outcomes",
+   "TFG_evaluator": "Final projects with your rubric and three AI assessors",
+   "evaluador_oral": "Structured assessment of oral presentations",
+   "justitia": "Learns your criterion, measures agreement and audits fairness",
+   "desafia": "Rubric-based assessor for transparent iteration with AI",
+   "cribia": "AI detector with a controlled false-positive rate",
+   "criteria": "Thoughtful AI use and a declaration for the assignment",
+   "publication_radar": "Journals that publish on your topic and their new articles",
+   "doctoralia": "State of the art with verified citations and PRISMA",
+   "grantwriter": "Proposals for R&D calls",
+   "revistafit": "Evidence-based journal choice and cover letter",
+   "meritoria": "Research assessment dossier for the sexenio",
+   "acreditia": "Degree self-assessment report and improvement plan",
+   "acta_ai": "Meeting minutes from notes or audio"
+  }
+ },
+ "pt": {
+  "title": "ProfesorIA · Potencia a tua docência com IA",
+  "eyebrow": "Curso · Formação do professorado universitário",
+  "h1": "ProfesorIA: potencia a tua <span>docência</span> com IA",
+  "sub": "Doze apps web num só ficheiro, com a tua própria chave de IA, para desenhar a unidade curricular, criar materiais, acompanhar o estudante, avaliar com critério e impulsionar a tua carreira.",
+  "stApps": "apps",
+  "stComp": "complementares",
+  "stSes": "sessões",
+  "stHours": "de formação",
+  "stLangs": "idiomas",
+  "navPhases": "Fases",
+  "phasesH": "As apps em cada fase do trabalho docente",
+  "phasesLead": "As doze apps do curso e dezanove apps complementares do catálogo, ordenadas segundo a fase do trabalho do professor em que se usam.",
+  "phasesNote": "As complementares não fazem parte das sessões: servem para aprofundar cada fase por conta própria. Verifica em cada uma que fornecedor de IA admite. Os dados dos estudantes são anonimizados e a nota é sempre assinada pelo professor.",
+  "legSes": "Sessão",
+  "legComp": "Complementar",
+  "tagComp": "+",
+  "phases": [
+   "Desenhar a unidade curricular",
+   "Criar materiais",
+   "Acompanhar o estudante",
+   "Avaliar",
+   "Equidade e integridade",
+   "Investigar",
+   "Carreira e qualidade"
+  ],
+  "footDev": "Desenvolvimento:",
+  "footLic": "Licença MIT",
+  "short": {
+   "sillabusAI": "Guia da unidade curricular com horas, alinhamento e bibliografia verificados",
+   "aulia": "Sessão completa: diapositivos, questionários e projeto com rubrica",
+   "pericia": "Curso completo: índice, conteúdo, avaliação e projetos",
+   "generator": "Unidade curricular completa a partir dos teus materiais",
+   "casopracticoAI": "Casos, role-plays, debates e análises críticas",
+   "nanoclase": "Melhora um material e gera vídeo, PowerPoint e perguntas GIFT",
+   "claria": "Os teus apontamentos em página interativa e vídeo, com citações verificadas",
+   "tuitia": "Tuítes verificados que reforçam o guião da tua aula",
+   "escenia": "Palestras por beats com cada citação e número verificados",
+   "relatoria": "Da gravação da aula ao caderno docente e aos apontamentos",
+   "poliglotia": "Traduz um PDF e converte-o numa apresentação narrada",
+   "tutoria": "Tutor socrático sobre a tua própria lição",
+   "forja_ai": "A tua própria app docente num só ficheiro, sem programar",
+   "mentoria": "Tutor de TFC e dissertação que acompanha mas não escreve",
+   "Estudia": "Tutor sobre os apontamentos do estudante, com citações verificadas",
+   "examforge": "Um teste diferente por estudante, com correção por scanner",
+   "corrigia": "Correção de exames manuscritos com os teus critérios",
+   "anticonvocatoria": "Exame imprevisível a partir dos resultados de aprendizagem",
+   "TFG_evaluator": "Trabalhos finais com a tua rubrica e três avaliadores de IA",
+   "evaluador_oral": "Avaliação estruturada de apresentações orais",
+   "justitia": "Aprende o teu critério, mede a concordância e audita a equidade",
+   "desafia": "Avaliador com rubrica para iterar com IA de forma transparente",
+   "cribia": "Detetor de IA com taxa de falsos positivos controlada",
+   "criteria": "Uso de IA com critério e declaração para o trabalho",
+   "publication_radar": "Revistas que publicam o teu tema e os seus artigos novos",
+   "doctoralia": "Estado da arte com citações verificadas e PRISMA",
+   "grantwriter": "Candidaturas a concursos de I&D&I",
+   "revistafit": "Escolher revista com evidência e carta de apresentação",
+   "meritoria": "Memória de contributos para o sexénio",
+   "acreditia": "Relatório de autoavaliação do curso e plano de melhoria",
+   "acta_ai": "Atas de reuniões a partir de notas ou áudio"
+  }
+ }
+};
+
+let lang = "es";
+function esc(s){ return String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c])); }
+
+function render(){
+  const L = T[lang];
+  document.documentElement.lang = lang;
+  document.title = L.title;
+  document.querySelectorAll("[data-i18n]").forEach(el => { el.textContent = L[el.dataset.i18n]; });
+  document.querySelectorAll("[data-i18n-html]").forEach(el => { el.innerHTML = L[el.dataset.i18nHtml]; });
+  document.querySelectorAll("#langs button").forEach(b => b.classList.toggle("active", b.dataset.l === lang));
+
+  document.getElementById("legend").innerHTML =
+    [2,3,4,5].map(n => `<span style="--c:var(${SES_COLOR[n]})"><i class="sw"></i>${esc(L.legSes)} ${n}</span>`).join("") +
+    `<span><i class="sw comp"></i>${esc(L.legComp)}</span>`;
+  document.getElementById("phases").innerHTML = PHASES.map((ids, i) => `<div class="phase">
+      <div class="phase-h"><span class="phase-n">${i+1}</span><span class="phase-t">${esc(L.phases[i])}</span></div>
+      ${ids.map(id => {
+        const a = APPS.find(x => x.id === id);
+        const url = `https://fborrasumh.github.io/${id}/`;
+        return a
+          ? `<a class="chip ses" style="--c:var(${SES_COLOR[a.ses]})" href="${url}" target="_blank" rel="noopener"><span class="tag">S${a.ses}</span><b>${esc(a.name)}</b>${esc(L.short[id])}</a>`
+          : `<a class="chip comp" href="${url}" target="_blank" rel="noopener"><span class="tag">${esc(L.tagComp)}</span><b>${esc(COMP[id])}</b>${esc(L.short[id])}</a>`;
+      }).join("")}
+    </div>`).join("");
+}
+
+function setLang(l){
+  lang = l;
+  try { localStorage.setItem("profesoria-lang", l); } catch(e) {}
+  render();
+}
+
+document.getElementById("langs").innerHTML = LANGS.map(l => `<button data-l="${l}" onclick="setLang('${l}')">${l.toUpperCase()}</button>`).join("");
+try {
+  const saved = localStorage.getItem("profesoria-lang");
+  lang = LANGS.includes(saved) ? saved : "es";
+} catch(e) {}
+render();
+</script>
+</body>
+</html>
